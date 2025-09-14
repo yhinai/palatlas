@@ -137,11 +137,11 @@ const TabPanel = (props) => {
 };
 
 const DashboardContainer = styled(Box)(({ isCompact }) => ({
-    backgroundColor: 'rgba(255, 255, 255, 0.98)',
-  backdropFilter: 'blur(20px)',
+  backgroundColor: 'rgba(15, 23, 42, 0.9)',
+  backdropFilter: 'blur(12px)',
   borderRadius: isCompact ? 16 : 20,
-  boxShadow: '0 20px 60px rgba(0, 0, 0, 0.15)',
-  border: '1px solid rgba(255, 255, 255, 0.25)',
+  boxShadow: '0 10px 30px rgba(0, 0, 0, 0.35)',
+  border: '1px solid rgba(30, 41, 59, 0.9)',
   overflow: 'hidden',
   height: isCompact ? 'calc(100vh - 140px)' : '100%',
   width: isCompact ? '600px' : '100%',
@@ -150,21 +150,11 @@ const DashboardContainer = styled(Box)(({ isCompact }) => ({
 }));
 
 const DashboardHeader = styled(Box)(({ isCompact }) => ({
-  background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-  color: 'white',
+  background: 'linear-gradient(180deg, rgba(2,6,23,0.95) 0%, rgba(15,23,42,0.95) 100%)',
+  color: '#e5e7eb',
   padding: isCompact ? '16px' : '20px',
   textAlign: 'center',
   position: 'relative',
-  '&::before': {
-    content: '""',
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    background: 'url("data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.1"%3E%3Ccircle cx="30" cy="30" r="2"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")',
-    opacity: 0.3,
-  }
 }));
 
 const StatsCard = styled(Card)(({ theme, isCompact }) => ({
@@ -184,17 +174,17 @@ const StatsCard = styled(Card)(({ theme, isCompact }) => ({
 const VisualizationContainer = styled(Paper)(({ theme, isCompact }) => ({
   padding: isCompact ? theme.spacing(2) : theme.spacing(3),
   margin: isCompact ? theme.spacing(1) : theme.spacing(2),
-  backgroundColor: 'rgba(255, 255, 255, 0.98)',
-  backdropFilter: 'blur(10px)',
+  backgroundColor: 'rgba(2, 6, 23, 0.6)',
+  backdropFilter: 'blur(8px)',
   borderRadius: 16,
-  boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
-  border: '1px solid rgba(255, 255, 255, 0.2)',
-  transition: 'all 0.3s ease',
+  boxShadow: '0 8px 24px rgba(0, 0, 0, 0.4)',
+  border: '1px solid rgba(30, 41, 59, 0.9)',
+  transition: 'all 0.2s ease',
   maxWidth: isCompact ? 500 : 600,
   height: isCompact ? '400px' : '500px',
   '&:hover': {
-    transform: 'translateY(-2px)',
-    boxShadow: '0 12px 40px rgba(0, 0, 0, 0.15)',
+    transform: 'translateY(-1px)',
+    boxShadow: '0 12px 36px rgba(0, 0, 0, 0.5)',
   }
 }));
 
@@ -208,19 +198,19 @@ const ChartContainer = styled(Box)(({ theme }) => ({
 
 const TopPlacesContainer = styled(Paper)({
   padding: '20px',
-  backgroundColor: 'rgba(255, 255, 255, 0.98)',
+  backgroundColor: 'rgba(2,6,23,0.6)',
   borderRadius: '16px',
-  boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)',
-  border: '1px solid rgba(255, 255, 255, 0.25)',
+  boxShadow: '0 8px 24px rgba(0, 0, 0, 0.4)',
+  border: '1px solid rgba(30, 41, 59, 0.9)',
 });
 
 const CategoryChip = styled(Chip)(({ theme }) => ({
   margin: theme.spacing(0.5),
-  backgroundColor: 'rgba(78, 205, 196, 0.1)',
-  color: '#4a6fa5',
-  border: '1px solid rgba(78, 205, 196, 0.3)',
+  backgroundColor: 'rgba(51, 65, 85, 0.4)',
+  color: '#cbd5e1',
+  border: '1px solid rgba(71, 85, 105, 0.8)',
   '&:hover': {
-    backgroundColor: 'rgba(78, 205, 196, 0.2)',
+    backgroundColor: 'rgba(51, 65, 85, 0.6)',
   }
 }));
 
@@ -478,15 +468,15 @@ const DataVisualizations = ({ cityName, countryCode, isCompact = false, onReady 
   return (
     <DashboardContainer isCompact={isCompact}>
       <DashboardHeader isCompact={isCompact}>
-        <Typography variant={isCompact ? "h5" : "h4"} sx={{ fontWeight: 700, mb: 1, position: 'relative', zIndex: 1 }}>
+        <Typography variant={isCompact ? "h5" : "h4"} sx={{ color: '#e5e7eb', fontWeight: 700, mb: 1, position: 'relative', zIndex: 1 }}>
           {isCompact ? 'Business Dashboard' : `Business Dashboard - ${cityName}`}
         </Typography>
-        <Typography variant="body1" sx={{ opacity: 0.9, position: 'relative', zIndex: 1 }}>
+        <Typography variant="body1" sx={{ color: '#cbd5e1', opacity: 0.9, position: 'relative', zIndex: 1 }}>
           {isCompact ? 'Comprehensive business insights' : `Comprehensive business insights for ${cityName}, ${countryCode}`}
         </Typography>
       </DashboardHeader>
 
-      <Box sx={{ borderBottom: 1, borderColor: 'divider', backgroundColor: 'rgba(255, 255, 255, 0.95)' }}>
+      <Box sx={{ borderBottom: 1, borderColor: 'rgba(51,65,85,0.8)', backgroundColor: 'rgba(2, 6, 23, 0.6)' }}>
         <Tabs 
           value={tabValue} 
           onChange={handleTabChange} 
@@ -494,9 +484,9 @@ const DataVisualizations = ({ cityName, countryCode, isCompact = false, onReady 
           sx={{
             '& .MuiTab-root': {
               fontWeight: 600,
-              color: '#4a6fa5',
+              color: '#94a3b8',
               '&.Mui-selected': {
-                color: '#667eea',
+                color: '#e5e7eb',
               }
             }
           }}
@@ -507,7 +497,7 @@ const DataVisualizations = ({ cityName, countryCode, isCompact = false, onReady 
         </Tabs>
       </Box>
 
-      <Box sx={{ flex: 1, overflow: 'auto', backgroundColor: 'rgba(248, 250, 252, 0.8)' }}>
+      <Box sx={{ flex: 1, overflow: 'auto', backgroundColor: 'rgba(2, 6, 23, 0.4)' }}>
       <TabPanel value={tabValue} index={0}>
           {/* Business Environment Overview */}
         <Grid container spacing={2}>

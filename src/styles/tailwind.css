@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --radius: 12px;
+}
+
+/* Dark theme defaults */
+html, body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@layer base {
+  :root {
+    --background: #0b1220;
+    --foreground: #e5e7eb;
+    --card: #0f172a;
+    --card-foreground: #e5e7eb;
+    --border: #1f2937;
+    --muted-foreground: #94a3b8;
+    --ring: #334155;
+  }
+  * { @apply border-[color:var(--border)] outline-[color:var(--ring)]; }
+  body { @apply bg-[color:var(--background)] text-[color:var(--foreground)]; }
+}

@@ -1,7 +1,12 @@
 import React, { useRef, useEffect, useState, useImperativeHandle, forwardRef } from 'react';
 import mapboxgl from 'mapbox-gl';
 
-mapboxgl.accessToken = 'pk.eyJ1IjoiZ203MTciLCJhIjoiY21kY3k1amNtMDJkdjJqc2M4cTdkZnJ3ZyJ9.aOfW29U47FH0vS9X8lfxLQ';
+// Use Vite environment variable for Mapbox access token
+const MAPBOX_TOKEN = import.meta.env.VITE_MAPBOX_ACCESS_TOKEN || '';
+if (!MAPBOX_TOKEN) {
+  console.warn('[Map] Missing VITE_MAPBOX_ACCESS_TOKEN. Map may not load correctly.');
+}
+mapboxgl.accessToken = MAPBOX_TOKEN;
 
 const Map = forwardRef(({ setMap }, ref) => {
   const mapContainer = useRef(null);
@@ -52,57 +57,27 @@ const Map = forwardRef(({ setMap }, ref) => {
     .setLngLat(cityCenter)
     .addTo(map);
 
-    // Enhanced analysis messages with more Qloo mentions
+    // Enhanced analysis messages (no external vendor mentions)
     const analysisMessages = [
       {
         title: "🔍 Initializing Analysis",
-        message: `GeoTaste Agent starting business environment scan for ${cityName}`,
-        detail: "Connecting to Qloo API for location intelligence..."
+        message: `Palatlas Agent starting business environment scan for ${cityName}`,
+        detail: "Gathering location intelligence and context..."
       },
       {
-        title: "📊 Qloo Brand Intelligence",
-        message: "Fetching brand popularity and consumer preference data",
-        detail: "Analyzing top brands and market leaders via Qloo API"
+        title: "📊 Brand & Preference Signals",
+        message: "Fetching brand popularity and consumer preference indicators",
+        detail: "Analyzing top brands and local market leaders"
       },
       {
-        title: "🏢 Qloo Business Data",
-        message: "Gathering local business and place information",
-        detail: "Retrieving business ratings, categories, and market insights"
+        title: "🧭 Mapping Activity",
+        message: "Identifying areas of interest and movement patterns",
+        detail: "Using geospatial context to refine analysis"
       },
       {
-        title: "📈 Market Analytics",
-        message: "Processing Qloo location intelligence data",
-        detail: "Calculating business density and market opportunities"
-      },
-      {
-        title: "🎯 Brand & Category Analysis",
-        message: "Identifying top-performing brands and business categories",
-        detail: "Qloo data revealing consumer preferences and market trends"
-      },
-      {
-        title: "📋 Business Intelligence",
-        message: "Compiling comprehensive market analysis report",
-        detail: "Synthesizing Qloo insights with AI-powered analysis"
-      },
-      {
-        title: "✨ Data Visualization",
-        message: "Generating interactive charts and business insights",
-        detail: "Creating visual reports from Qloo location data"
-      },
-      {
-        title: "🚀 Analysis Complete",
-        message: "Business environment analysis ready for review",
-        detail: "Qloo-powered insights available in analysis panels"
-      },
-      {
-        title: "💡 Market Opportunities",
-        message: "Identifying business opportunities and market gaps",
-        detail: "Qloo data highlighting untapped market potential"
-      },
-      {
-        title: "📊 Final Insights",
-        message: "Preparing executive summary and key findings",
-        detail: "Qloo location intelligence + AI analysis complete"
+        title: "📈 Business Environment",
+        message: "Analyzing categories, ratings, and seasonal patterns",
+        detail: "Preparing visualizations and insights"
       }
     ];
 
@@ -168,12 +143,12 @@ const Map = forwardRef(({ setMap }, ref) => {
                 padding: 2px 6px; 
                 border-radius: 10px;
                 font-weight: 600;
-              ">QLOO</div>
+              "></div>
             </div>
             
             <div style="
               font-weight: 600; 
-              color: #26324B; 
+              color: #e5e7eb; 
               font-size: 13px; 
               margin-bottom: 6px;
               line-height: 1.3;
@@ -181,7 +156,7 @@ const Map = forwardRef(({ setMap }, ref) => {
             
             <div style="
               font-size: 12px; 
-              color: #374151; 
+              color: #cbd5e1; 
               margin-bottom: 4px;
               line-height: 1.4;
             ">${currentMessage.message}</div>
@@ -251,7 +226,7 @@ const Map = forwardRef(({ setMap }, ref) => {
   useEffect(() => {
     const map = new mapboxgl.Map({
       container: mapContainer.current,
-      style: 'mapbox://styles/mapbox/streets-v12',
+      style: 'mapbox://styles/mapbox/dark-v11',
       center: [lng, lat],
       zoom: zoom,
       projection: 'globe',

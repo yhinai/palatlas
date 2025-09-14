@@ -39,8 +39,11 @@ const SearchBar = ({ map, onCitySearch, onSearchStart }) => {
     }
 
     try {
-      // Use the actual Mapbox access token from environment or a working one
-      const accessToken = 'pk.eyJ1IjoiZ203MTciLCJhIjoiY21kY3k1amNtMDJkdjJqc2M4cTdkZnJ3ZyJ9.aOfW29U47FH0vS9X8lfxLQ';
+      // Use Mapbox access token from Vite environment
+      const accessToken = import.meta.env.VITE_MAPBOX_ACCESS_TOKEN || '';
+      if (!accessToken) {
+        console.warn('[SearchBar] Missing VITE_MAPBOX_ACCESS_TOKEN. Geocoding may fail.');
+      }
       const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(query)}.json?access_token=${accessToken}&limit=1&types=place`;
       
       console.log('[SearchBar] Searching for:', query);
