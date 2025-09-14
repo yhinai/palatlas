@@ -1,0 +1,36 @@
+# Exclude all deployment configuration files
+render.yaml
+RENDER_DEPLOYMENT.md
+deploy-render.md
+QUICK_DEPLOY.md
+DEPLOYMENT.md
+DEPLOYMENT_CHECKLIST.md
+DEPLOYMENT_ALTERNATIVES.md
+TROUBLESHOOTING.md
+RAILWAY_DEPLOYMENT.md
+start.sh
+start.bat
+deploy.sh
+
+# Exclude development files
+node_modules
+.git
+.gitignore
+README.md
+*.log
+dist/
+Backend/static/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.DS_Store
+.vscode/
+.idea/
+
+# Exclude any other potential config files
+*.toml
+*.yaml
+*.yml
+Procfile
+runtime.txt 
