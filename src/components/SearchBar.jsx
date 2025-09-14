@@ -1,5 +1,31 @@
 import React, { useState } from 'react';
-import { Card } from './ui/card';
+import { styled } from '@mui/material/styles';
+import { InputBase, Paper, IconButton } from '@mui/material';
+import SearchIcon from '@mui/icons-material/Search';
+
+const SearchContainer = styled(Paper)(({ theme }) => ({
+  borderRadius: 999,
+  background: 'linear-gradient(180deg, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0.35) 100%)',
+  padding: '12px 18px',
+  display: 'flex',
+  alignItems: 'center',
+  width: 600,
+  maxWidth: '92vw',
+  backdropFilter: 'blur(14px)',
+  boxShadow: '0 10px 30px rgba(0,0,0,0.15)',
+  border: '1px solid rgba(255,255,255,0.55)',
+}));
+
+const StyledInputBase = styled(InputBase)(({ theme }) => ({
+  marginLeft: theme.spacing(1),
+  flex: 1,
+  fontSize: '1.05rem',
+  color: '#111827',
+  '::placeholder': { color: 'rgba(17,24,39,0.55)' },
+  input: {
+    padding: '8px 0',
+  }
+}));
 
 const SearchBar = ({ map, onCitySearch, onSearchStart }) => {
   const [query, setQuery] = useState('');
@@ -140,27 +166,28 @@ const SearchBar = ({ map, onCitySearch, onSearchStart }) => {
   };
 
   return (
-    <Card className="w-[600px] max-w-[92vw] border border-border/80 bg-white/70 backdrop-blur-md">
-      <div className="flex items-center gap-2 p-3">
-        <input
-          type="text"
-          placeholder="Search for a city..."
-          className="flex-1 bg-transparent placeholder-slate-500 text-slate-900 text-base focus:outline-none"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
-        />
-        <button
-          aria-label="search"
-          onClick={handleSearch}
-          className="inline-flex items-center justify-center rounded-full bg-cyan-400/90 hover:bg-cyan-400 text-cyan-950 h-10 w-10 shadow-sm transition-transform active:translate-y-px"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5">
-            <path fillRule="evenodd" d="M10.5 3.75a6.75 6.75 0 1 0 4.243 11.93l3.788 3.789a.75.75 0 1 0 1.06-1.06l-3.788-3.79A6.75 6.75 0 0 0 10.5 3.75Zm-5.25 6.75a5.25 5.25 0 1 1 10.5 0 5.25 5.25 0 0 1-10.5 0Z" clipRule="evenodd" />
-          </svg>
-        </button>
-      </div>
-    </Card>
+    <SearchContainer elevation={0}>
+      <StyledInputBase
+        placeholder="Search for a city..."
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+        onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
+      />
+      <IconButton
+        aria-label="search"
+        size="large"
+        sx={{
+          backgroundColor: 'rgba(78, 205, 196, 0.85)',
+          color: '#083344',
+          boxShadow: '0 6px 16px rgba(78,205,196,0.35)',
+          '&:hover': { backgroundColor: 'rgba(78, 205, 196, 1)', transform: 'translateY(-1px)' },
+          '&:active': { transform: 'translateY(0)' }
+        }}
+        onClick={handleSearch}
+      >
+        <SearchIcon />
+      </IconButton>
+    </SearchContainer>
   );
 };
 
