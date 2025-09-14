@@ -24,36 +24,38 @@ import AssessmentIcon from '@mui/icons-material/Assessment';
 import InsightsIcon from '@mui/icons-material/Insights';
 
 const PanelHeader = styled(Box)(({ theme }) => ({
-  background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-  color: 'white',
-  padding: '20px',
+  background: 'linear-gradient(180deg, rgba(2,6,23,0.95) 0%, rgba(15,23,42,0.95) 100%)',
+  color: '#e5e7eb',
+  padding: '16px 20px',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
   gap: '12px',
+  borderBottom: '1px solid rgba(30,41,59,0.8)'
 }));
 
 const AnalysisContent = styled(Box)(({ theme }) => ({
   flex: 1,
-  padding: '24px',
+  padding: '20px',
   overflowY: 'auto',
   display: 'flex',
   flexDirection: 'column',
   gap: '16px',
+  backgroundColor: 'rgba(2,6,23,0.4)'
 }));
 
 const AnalysisSection = styled(Paper)(({ theme }) => ({
   padding: '20px',
-  backgroundColor: 'rgba(255, 255, 255, 0.8)',
+  backgroundColor: 'rgba(2,6,23,0.6)',
   borderRadius: '12px',
-  boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
-  border: '1px solid rgba(255, 255, 255, 0.3)',
+  boxShadow: '0 6px 20px rgba(0, 0, 0, 0.35)',
+  border: '1px solid rgba(30, 41, 59, 0.9)'
 }));
 
 const ChatSection = styled(Box)(({ theme }) => ({
   padding: '16px',
-  borderTop: '1px solid rgba(0, 0, 0, 0.1)',
-  backgroundColor: 'rgba(248, 250, 252, 0.8)',
+  borderTop: '1px solid rgba(30,41,59,0.8)',
+  backgroundColor: 'rgba(2,6,23,0.5)'
 }));
 
 const MessageBubble = styled(Box)(({ isUser, theme }) => ({
@@ -65,8 +67,8 @@ const MessageBubble = styled(Box)(({ isUser, theme }) => ({
     maxWidth: '100%',
     padding: '12px 16px',
     borderRadius: isUser ? '18px 18px 4px 18px' : '18px 18px 18px 4px',
-    backgroundColor: isUser ? '#667eea' : '#f5f5f5',
-    color: isUser ? 'white' : '#333',
+    backgroundColor: isUser ? 'rgba(59,130,246,0.25)' : 'rgba(30,41,59,0.8)',
+    color: isUser ? '#e5e7eb' : '#cbd5e1',
     fontSize: '14px',
     lineHeight: 1.5,
     wordWrap: 'break-word',
@@ -74,15 +76,12 @@ const MessageBubble = styled(Box)(({ isUser, theme }) => ({
 }));
 
 const AnalysisAccordion = styled(Accordion)(({ theme }) => ({
-  backgroundColor: 'rgba(255, 255, 255, 0.9)',
+  backgroundColor: 'rgba(2,6,23,0.6)',
   borderRadius: '8px',
   marginBottom: '8px',
-  '&:before': {
-    display: 'none',
-  },
-  '&.Mui-expanded': {
-    margin: '8px 0',
-  },
+  border: '1px solid rgba(30,41,59,0.9)',
+  '&:before': { display: 'none' },
+  '&.Mui-expanded': { margin: '8px 0' },
 }));
 
 const SectionHeader = styled(Box)(({ theme }) => ({
@@ -90,10 +89,10 @@ const SectionHeader = styled(Box)(({ theme }) => ({
   alignItems: 'center',
   gap: '8px',
   padding: '12px 16px',
-  backgroundColor: 'rgba(102, 126, 234, 0.1)',
+  backgroundColor: 'rgba(51,65,85,0.25)',
   borderRadius: '8px',
   marginBottom: '12px',
-  border: '1px solid rgba(102, 126, 234, 0.2)',
+  border: '1px solid rgba(71,85,105,0.8)'
 }));
 
 const BusinessAnalysisPanel = ({ cityName, countryCode, onAnalysisReady }) => {
@@ -281,7 +280,7 @@ const BusinessAnalysisPanel = ({ cityName, countryCode, onAnalysisReady }) => {
       <PanelHeader>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
           <BusinessIcon />
-          <Typography variant="h6" sx={{ fontWeight: 600 }}>
+          <Typography variant="h6" sx={{ fontWeight: 600, color: '#e5e7eb' }}>
             Business Environment Analysis
           </Typography>
         </Box>
@@ -298,23 +297,23 @@ const BusinessAnalysisPanel = ({ cityName, countryCode, onAnalysisReady }) => {
       <AnalysisContent>
         {isLoading ? (
           <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2, py: 4 }}>
-            <CircularProgress size={40} />
-            <Typography variant="body1" color="text.secondary">
+            <CircularProgress size={40} sx={{ color: '#93c5fd' }} />
+            <Typography variant="body1" sx={{ color: '#cbd5e1' }}>
               Analyzing business environment for {cityName}...
             </Typography>
           </Box>
         ) : error ? (
           <AnalysisSection>
-            <Typography variant="h6" color="error" gutterBottom>
+            <Typography variant="h6" sx={{ color: '#fca5a5' }} gutterBottom>
               Analysis Error
             </Typography>
-            <Typography variant="body2" color="text.secondary">
+            <Typography variant="body2" sx={{ color: '#cbd5e1' }}>
               {error}
             </Typography>
             <Button 
               variant="outlined" 
               onClick={generateAnalysis}
-              sx={{ mt: 2 }}
+              sx={{ mt: 2, color: '#e5e7eb', borderColor: '#475569', '&:hover': { borderColor: '#64748b' } }}
             >
               Retry Analysis
             </Button>
@@ -324,8 +323,8 @@ const BusinessAnalysisPanel = ({ cityName, countryCode, onAnalysisReady }) => {
             {/* Main Analysis */}
             <AnalysisSection>
               <SectionHeader>
-                <SmartToyIcon sx={{ color: '#667eea' }} />
-                <Typography variant="h6" sx={{ fontWeight: 600, color: '#26324B' }}>
+                <SmartToyIcon sx={{ color: '#93c5fd' }} />
+                <Typography variant="h6" sx={{ fontWeight: 600, color: '#e5e7eb' }}>
                   Business Environment Analysis
                 </Typography>
               </SectionHeader>
@@ -334,10 +333,10 @@ const BusinessAnalysisPanel = ({ cityName, countryCode, onAnalysisReady }) => {
                 <Box>
                   {analysisSections.map((section, index) => (
                     <AnalysisAccordion key={index} defaultExpanded={index < 2}>
-                      <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                      <AccordionSummary expandIcon={<ExpandMoreIcon sx={{ color: '#cbd5e1' }} />}>
                         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                           {getSectionIcon(section.title)}
-                          <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>
+                          <Typography variant="subtitle1" sx={{ fontWeight: 600, color: '#e5e7eb' }}>
                             {section.title}
                           </Typography>
                         </Box>
@@ -347,8 +346,8 @@ const BusinessAnalysisPanel = ({ cityName, countryCode, onAnalysisReady }) => {
                           variant="body2" 
                           sx={{ 
                             lineHeight: 1.6,
-                            color: '#374151',
-                            '& strong': { fontWeight: 600, color: '#1f2937' }
+                            color: '#cbd5e1',
+                            '& strong': { fontWeight: 600, color: '#e5e7eb' }
                           }}
                         >
                           {section.content}
@@ -363,7 +362,8 @@ const BusinessAnalysisPanel = ({ cityName, countryCode, onAnalysisReady }) => {
                   sx={{ 
                     lineHeight: 1.7,
                     whiteSpace: 'pre-line',
-                    '& strong': { fontWeight: 600 }
+                    color: '#cbd5e1',
+                    '& strong': { fontWeight: 600, color: '#e5e7eb' }
                   }}
                 >
                   {analysis}
@@ -373,7 +373,7 @@ const BusinessAnalysisPanel = ({ cityName, countryCode, onAnalysisReady }) => {
 
             {/* Interactive Chat */}
             <AnalysisSection>
-              <Typography variant="h6" sx={{ fontWeight: 600, color: '#26324B', mb: 2 }}>
+              <Typography variant="h6" sx={{ fontWeight: 600, color: '#e5e7eb', mb: 2 }}>
                 Ask Questions
               </Typography>
               
@@ -385,7 +385,8 @@ const BusinessAnalysisPanel = ({ cityName, countryCode, onAnalysisReady }) => {
                         component="div" 
                         sx={{ 
                           whiteSpace: 'pre-line',
-                          '& strong': { fontWeight: 600 }
+                          color: isUser ? '#e5e7eb' : '#cbd5e1',
+                          '& strong': { fontWeight: 600, color: isUser ? '#e5e7eb' : '#cbd5e1' }
                         }}
                       >
                         {message.content}
@@ -398,8 +399,8 @@ const BusinessAnalysisPanel = ({ cityName, countryCode, onAnalysisReady }) => {
                   <MessageBubble isUser={false}>
                     <Box className="message-content">
                       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                        <CircularProgress size={16} />
-                        <Typography>Analyzing...</Typography>
+                        <CircularProgress size={16} sx={{ color: '#93c5fd' }} />
+                        <Typography sx={{ color: '#cbd5e1' }}>Analyzing...</Typography>
                       </Box>
                     </Box>
                   </MessageBubble>
@@ -419,18 +420,19 @@ const BusinessAnalysisPanel = ({ cityName, countryCode, onAnalysisReady }) => {
                   sx={{
                     '& .MuiOutlinedInput-root': {
                       borderRadius: '20px',
-                      backgroundColor: 'rgba(245, 245, 245, 0.8)',
-                    }
+                      backgroundColor: 'rgba(30,41,59,0.8)',
+                    },
+                    '& .MuiOutlinedInput-input': { color: '#e5e7eb' }
                   }}
                 />
                 <IconButton
                   onClick={sendChatMessage}
                   disabled={!inputMessage.trim() || isChatLoading}
                   sx={{
-                    bgcolor: '#667eea',
-                    color: 'white',
-                    '&:hover': { bgcolor: '#5a6fd8' },
-                    '&:disabled': { bgcolor: '#ccc' }
+                    bgcolor: 'rgba(59,130,246,0.25)',
+                    color: '#e5e7eb',
+                    '&:hover': { bgcolor: 'rgba(59,130,246,0.35)' },
+                    '&:disabled': { bgcolor: 'rgba(51,65,85,0.6)' }
                   }}
                 >
                   <SendIcon />
