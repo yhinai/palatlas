@@ -6,7 +6,7 @@
   --radius: 12px;
 }
 
-/* Dark theme defaults */
+/* Light theme defaults */
 html, body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -14,13 +14,13 @@ html, body {
 
 @layer base {
   :root {
-    --background: #0b1220;
-    --foreground: #e5e7eb;
-    --card: #0f172a;
-    --card-foreground: #e5e7eb;
-    --border: #1f2937;
-    --muted-foreground: #94a3b8;
-    --ring: #334155;
+    --background: #ffffff;
+    --foreground: #111827;
+    --card: #ffffff;
+    --card-foreground: #111827;
+    --border: #e5e7eb;
+    --muted-foreground: #6b7280;
+    --ring: #93c5fd;
   }
   * { @apply border-[color:var(--border)] outline-[color:var(--ring)]; }
   body { @apply bg-[color:var(--background)] text-[color:var(--foreground)]; }
